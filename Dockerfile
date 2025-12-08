@@ -1,14 +1,14 @@
-# 1. Start with a lightweight Linux OS that already has Python installed
-FROM python:3.9-slim
+# Use Python 3.9
+FROM python:3.9
 
-# 2. Create a folder inside the container to hold our app
+# Set working directory
 WORKDIR /app
 
-# 3. Copy our current folder files (app.py) into that container folder
+# Copy all files
 COPY . .
 
-# 4. Run the command to install Flask inside the container
-RUN pip install flask psutil
+# Install dependencies (Flask + System Monitor + Database Driver)
+RUN pip install flask psutil psycopg2-binary
 
-# 5. Tell the container what command to run when it starts up
+# Run the app
 CMD ["python", "app.py"]
